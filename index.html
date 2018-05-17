@@ -1,78 +1,64 @@
-<!doctype html>
-<title>TrackListr</title>
-
-<link rel="stylesheet" href="mystyle.css">
-<script src="ytapi.js"></script>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>TrackListr</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+</head>
 <body>
+<div class="container-fluid">
 
-    <header id="pageHeader">
-        <h1>TrackListr</h1>
-        <p>Mixes at your own pace</p>
-    </header>
+    <img src="/image/banner.jpg" class="img-fluid" alt="Responsive image">
 
-    <article id="mainArticle"> 
-        <h3>Tracklist</h3>
-        <p>If you're feeling nice, remove anything that isn't related to the music; DJ names etc.</p>
+    <br><br>
 
-        <form id="tracklist_plain">
-            <div>
+    <form>  
+        <div class="form-group mx-auto">
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-outline-success" style="width: 200px;">Find the music</button>  
+    </form>
 
-                <textarea id="tracklist" rows="25" cols="120" placeholder="Copy/paste the tracklist here..."></textarea><br>
-                <input type="button" value="get tracklistr" onclick="go()" />
+    <br>
 
-                <button id="execute-request-button">Authorize</button>
-
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-                <script async defer src="https://apis.google.com/js/api.js" 
-                        onload="this.onload=function(){};handleClientLoad()" 
-                        onreadystatechange="if (this.readyState === 'complete') this.onload()">
-                </script>
-
+    <div class="accordion" id="accordionExample">
+        <div class="card">
+          <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+              <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Search Term #1
+              </button>
+            </h5>
+          </div>
+          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col col-md-6">
+                            <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/VIJUKHsrM1k" allowfullscreen></iframe>    
+                            </div>
+                        </div>
+                        <div class="col col-md-6">
+                            <h4>Light of the World - London Town</h4>
+                            <hr>
+                            <p>Find some text from somewhere to chuck in here?
+                                Might make it seem less like a way of stealing tunes
+                                and more like a way to enjoy them.
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </form>
-    
-    </article>
-  
-    <nav id="mainNav">
-        <p></p>
-    </nav>
-  
-    <footer id="pageFooter">
-    </footer>
+        </div>
 
+</div>
+
+
+</div>
 </body>
-
-<script>
-    // define API request
-
-    // function to read raw tracklist
-    function go() {      
-        // define variable containing video IDs
-        var videoID; 
-
-        // save entire input as variable
-        var tracklist = document.getElementById('tracklist').value;
-
-        // read tracklist line by line
-        var tracks = tracklist.split('\n');
-        for(var i = 0; i < tracks.length; i++){
-            // log each track name
-            console.log(tracks[i]);
-
-            // define request
-            var request = defineRequest(tracks[i]);
-
-            // log video id response
-            request.execute(function(response){
-                videoID = response.items[0].id.videoId;
-                return videoID
-                //console.log(videoID);
-            });
-
-            console.log(videoID);    
-        }
-
-        
-    }
-</script>
+</html>
