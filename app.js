@@ -47,9 +47,6 @@ $(function(){
                 }
             });
         }
-
-        //console.log(titles)
-        //console.log(videoIDs);
     });
 });
 

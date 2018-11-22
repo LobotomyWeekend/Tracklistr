@@ -1,0 +1,78 @@
+<!doctype html>
+<title>TrackListr</title>
+
+<link rel="stylesheet" href="mystyle.css">
+<script src="ytapi.js"></script>
+
+<body>
+
+    <header id="pageHeader">
+        <h1>TrackListr</h1>
+        <p>Mixes at your own pace</p>
+    </header>
+
+    <article id="mainArticle"> 
+        <h3>Tracklist</h3>
+        <p>If you're feeling nice, remove anything that isn't related to the music; DJ names etc.</p>
+
+        <form id="tracklist_plain">
+            <div>
+
+                <textarea id="tracklist" rows="25" cols="120" placeholder="Copy/paste the tracklist here..."></textarea><br>
+                <input type="button" value="get tracklistr" onclick="go()" />
+
+                <button id="execute-request-button">Authorize</button>
+
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+                <script async defer src="https://apis.google.com/js/api.js" 
+                        onload="this.onload=function(){};handleClientLoad()" 
+                        onreadystatechange="if (this.readyState === 'complete') this.onload()">
+                </script>
+
+            </div>
+        </form>
+    
+    </article>
+  
+    <nav id="mainNav">
+        <p></p>
+    </nav>
+  
+    <footer id="pageFooter">
+    </footer>
+
+</body>
+
+<script>
+    // define API request
+
+    // function to read raw tracklist
+    function go() {      
+        // define variable containing video IDs
+        var videoID; 
+
+        // save entire input as variable
+        var tracklist = document.getElementById('tracklist').value;
+
+        // read tracklist line by line
+        var tracks = tracklist.split('\n');
+        for(var i = 0; i < tracks.length; i++){
+            // log each track name
+            console.log(tracks[i]);
+
+            // define request
+            var request = defineRequest(tracks[i]);
+
+            // log video id response
+            request.execute(function(response){
+                videoID = response.items[0].id.videoId;
+                return videoID
+                //console.log(videoID);
+            });
+
+            console.log(videoID);    
+        }
+
+        
+    }
+</script>
